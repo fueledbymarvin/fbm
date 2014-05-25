@@ -1,0 +1,23 @@
+.index-wrapper
+  .splash-wrapper
+    h1 FBM
+    .index-form.container
+      alerts key="index" action="resendActivation()"
+      span ng-show="currentUser"
+        a href="/#/users/view/{{currentUser.id}}"
+          .btn.btn-primary.btn-wide My Profile
+        .btn.btn-primary.btn-wide ng-click="logout()" Log Out
+      span ng-hide="currentUser"
+        form.form-horizontal role="form" name="loginForm" ng-submit="login()"
+          .form-group
+            label.control-label for="inputEmail" Email
+            input.form-control type="email" ng-model="email" name="email" required=""
+          .form-group
+            label.control-label for="inputPassword" Password
+            input.form-control type="password" ng-model="password" name="password" required=""
+          .form-group
+            button.btn.btn-primary.btn-wide type="submit" ng-disabled="userForm.$invalid" ng-click="login()" Log In
+            a href="/#/users/new"
+              button.btn.btn-primary.btn-wide type="button" Sign Up
+          .form-group
+            label.control-label.forgot ng-click="sendResetPassword()" Forgot your password?

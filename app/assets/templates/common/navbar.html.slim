@@ -1,0 +1,14 @@
+nav.navbar.navbar-inverse role="navigation"
+  .navbar-header
+    button.navbar-toggle type="button" data-toggle="collapse" data-target="#navbar-collapse-01"
+    a.navbar-brand href="/#/" FBM
+  #navbar-collapse-01.navbar-collapse.collapse
+    ul.nav.navbar-nav
+      li ng-class="{active: active == 'profile'}"
+        a ng-href="/#/users/view/{{user.id}}" Profile
+      li ng-class="{active: active == 'settings'}" 
+        a ng-href="/#/users/edit/{{user.id}}" Settings
+      li
+        a ng-click="logout()" Log Out
+
+

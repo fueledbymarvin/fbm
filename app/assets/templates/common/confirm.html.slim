@@ -1,0 +1,7 @@
+.btn.btn-danger.btn-wide ng-click="activate()" ng-hide="clicked" {{message}}
+form role="form" name="confirmForm" ng-submit="confirm()" ng-show="clicked"
+  .form-group
+    label.control-label for="inputConfirm" {{instructions}}
+    input.form-control type="text" ng-model="input"
+  .form-group
+    button.btn.btn-danger.btn-wide type="submit" ng-disabled="check" ng-click="action()" I'm sure.

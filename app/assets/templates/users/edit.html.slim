@@ -1,0 +1,21 @@
+.container
+  .page-header
+    h1 Settings
+
+  navbar user="user" active="settings"
+
+  form.edit-form role="form" name="passwordForm" ng-submit="save()"
+    .form-group
+      label.control-label for="inputPassword" Password
+      alerts key="password"
+      input.form-control type="password" ng-model="user.password" required=""
+    .form-group
+      label.control-label for="inputPasswordConfirmation" Confirm Password
+      alerts key="password_confirmation"
+      input.form-control type="password" ng-model="user.password_confirmation" required=""
+    .form-group
+      button.btn.btn-primary.btn-wide type="submit" ng-disabled="passwordForm.$invalid" ng-click="save()" Change Password 
+  a href="/#/users/view/{{user.id}}"
+    button.btn.btn-primary.btn-wide.not-end type="button" Back
+  text-confirm action="delete()" instructions="Confirm by entering your email address." message="Delete Account" target="{{user.email}}"
+

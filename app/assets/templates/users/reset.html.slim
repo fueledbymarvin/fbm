@@ -1,0 +1,15 @@
+.container
+  .page-header
+    h1 Reset Password
+
+  form.edit-form role="form" name="passwordForm" ng-submit="resetPassword()"
+    .form-group
+      label.control-label for="inputPassword" Password
+      alerts key="password"
+      input.form-control type="password" ng-model="password" required=""
+    .form-group
+      label.control-label for="inputPasswordConfirmation" Confirm Password
+      alerts key="password_confirmation"
+      input.form-control type="password" ng-model="password_confirmation" required=""
+    .form-group
+      button.btn.btn-primary.btn-wide type="submit" ng-disabled="passwordForm.$invalid" ng-click="resetPassword()" Change Password 

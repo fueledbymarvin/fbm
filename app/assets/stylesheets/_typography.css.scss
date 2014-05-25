@@ -1,0 +1,10 @@
+.alert-link {
+  cursor: pointer;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+a {
+  cursor: pointer;
+}

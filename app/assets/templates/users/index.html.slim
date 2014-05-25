@@ -1,0 +1,12 @@
+.page-header
+  h1 All Users
+
+table.table.table-hover
+  thead
+    tr
+      th ID
+      th Email
+  tbody
+    tr ng-repeat="user in users"
+      td {{user.id}}
+      th {{user.email}}
