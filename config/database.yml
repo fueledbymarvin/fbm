@@ -12,7 +12,3 @@ development:
 test: &test
   <<: *connection
   database: fbm-test
-
-production: &production
-  <<: *connection
-  database: fbm-production

@@ -7,7 +7,7 @@ guard :bundler do
   # watch(/^.+\.gemspec/)
 end
 
-guard 'puma', bind: 'unix:///tmp/puma.sock' do
+guard 'puma' do
   watch('Gemfile.lock')
   watch(%r{^config|lib/.*})
 end

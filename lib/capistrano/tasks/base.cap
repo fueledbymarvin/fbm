@@ -1,0 +1,24 @@
+namespace :deploy do
+  desc "Install dependencies"
+  task :install do
+    on roles(:all) do
+      execute 'sudo', 'apt-get -y update'
+      execute 'sudo', 'apt-get -y upgrade'
+      execute 'sudo', 'apt-get -y install emacs24 git'
+      invoke 'rvm1:install:rvm'
+      execute 'rvm', 'install ruby-2.1.1'
+    end
+  end
+
+  desc "Make sure local git is in sync with remote"
+  task :check_revision do
+    on roles(:all) do
+      unless 'git rev-parse HEAD' == 'git rev-parse origin/master'
+        puts "WARNING: HEAD is not the same as origin/master"
+        puts "Run 'git push' to sync changes"
+        exit
+      end
+    end
+  end
+  before "deploy", "deploy:check_revision"
+end

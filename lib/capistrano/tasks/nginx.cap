@@ -1,0 +1,32 @@
+namespace :nginx do
+  desc "Install latest stable release of nginx"
+  task :install do
+    on roles(:web) do
+      execute 'sudo', 'add-apt-repository ppa:nginx/stable'
+      execute 'sudo', 'apt-get -y update'
+      execute 'sudo', 'apt-get -y install nginx'
+    end
+  end
+  after "deploy:install", "nginx:install"
+
+  desc "Setup nginx configuration"
+  task :setup do
+    on roles(:web) do
+      erb = File.read(File.expand_path("../templates/nginx.erb", __FILE__))
+      put ERB.new(erb).result(binding), '/tmp/nginx_conf'
+      execut 'sudo', "mv /tmp/nginx_conf /etc/nginx/sites-enabled/#{fetch(:application)}"
+      execute 'sudo', "rm -f /etc/nginx/sites-enabled/default"
+      invoke "nginx:restart"
+    end
+  end
+  after "deploy:finished", "nginx:setup"
+
+  %w[start stop restart].each do |command|
+    desc "#{command} nginx"
+    task command do
+      on roles(:web) do
+        execute 'sudo', "service nginx #{command}"
+      end
+    end
+  end
+end
