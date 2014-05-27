@@ -19,7 +19,7 @@ namespace :nginx do
       invoke "nginx:restart"
     end
   end
-  after "deploy:finished", "nginx:setup"
+  after "deploy:updated", "nginx:setup"
 
   %w[start stop restart].each do |command|
     desc "#{command} nginx"

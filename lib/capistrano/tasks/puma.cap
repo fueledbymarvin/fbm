@@ -9,7 +9,7 @@ namespace :puma do
       execute 'sudo', "update-rc.d -f puma_#{fetch(:application)} defaults"
     end
   end
-  after "deploy:finished", "puma:setup"
+  after "deploy:updated", "puma:setup"
 
   %w[start stop restart].each do |command|
     desc "#{command} puma"

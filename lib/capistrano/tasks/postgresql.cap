@@ -24,7 +24,7 @@ namespace :postgresql do
       put ERB.new(erb).result(binding), "#{fetch(:shared_path)}/config/database.yml"
     end
   end
-  after "deploy:finished", "postgresql:setup"
+  after "deploy:updated", "postgresql:setup"
 
   desc "Symlink the database.yml file into latest release"
   task :symlink do
