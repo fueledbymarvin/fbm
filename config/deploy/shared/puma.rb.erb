@@ -4,7 +4,7 @@
 #
 # The default is the current directory.
 #
-directory <%= current_path %>
+directory "<%= "#{fetch(:deploy_to)}/current" %>"
 
 # Use an object or block as the rack application. This allows the
 # config file to be the application itself.
@@ -27,7 +27,7 @@ directory <%= current_path %>
 #
 # The default is “development”.
 #
-environment 'production'
+environment "<%= fetch(:rails_env) %>"
 
 # Daemonize the server into the background. Highly suggest that
 # this be combined with “pidfile” and “stdout_redirect”.
@@ -39,7 +39,7 @@ daemonize
 
 # Store the pid of the server in the file at “path”.
 #
-pidfile "<%= current_path %>/tmp/pids/puma.pid"
+pidfile "<%= "#{fetch(:deploy_to)}/current" %>/tmp/pids/puma.pid"
 
 # Use “path” as the file to store the server info state. This is
 # used by “pumactl” to query and control the server.
@@ -51,7 +51,7 @@ pidfile "<%= current_path %>/tmp/pids/puma.pid"
 # “false”.
 #
 # stdout_redirect '/u/apps/lolcat/log/stdout', '/u/apps/lolcat/log/stderr'
-stdout_redirect "<%= current_path %>/log/puma.log", "<%= current_path %>/log/puma.log", true
+stdout_redirect "<%= "#{fetch(:deploy_to)}/current" %>/log/puma.log", "<%= "#{fetch(:deploy_to)}/current" %>/log/puma.log", true
 
 # Disable request logging.
 #

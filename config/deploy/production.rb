@@ -16,7 +16,7 @@ set :rails_env, :production
 
 # number of unicorn workers, this will be reflected in
 # the unicorn.rb and the monit configs
-set :unicorn_worker_count, 5
+set :puma_worker_count, 5
 
 # whether we're using ssl or not, used for building nginx
 # config file
