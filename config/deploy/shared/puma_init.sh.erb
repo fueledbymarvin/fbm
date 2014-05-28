@@ -12,8 +12,8 @@ set -e
 
 # Feel free to change any of the following variables for your app:
 TIMEOUT=${TIMEOUT-60}
-APP_ROOT=<%= "#{fetch(:deploy_to)}/current" %>
-PID=$APP_ROOT/tmp/pids/unicorn.pid
+APP_ROOT=<%= current_path %>
+PID=$APP_ROOT/tmp/pids/puma.pid
 CMD="cd $APP_ROOT; bundle exec puma -C <%= "#{shared_path}/config/puma.rb" %>"
 AS_USER=<%= fetch(:user) %>
 set -u
