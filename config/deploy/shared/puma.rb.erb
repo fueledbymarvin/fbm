@@ -34,8 +34,8 @@ environment "<%= fetch(:rails_env) %>"
 #
 # The default is “false”.
 #
-daemonize
-# daemonize false
+# daemonize
+daemonize true
 
 # Store the pid of the server in the file at “path”.
 #
@@ -102,7 +102,7 @@ bind "unix:/tmp/puma.<%= fetch(:application) %>.sock"
 #
 # The default is “0”.
 #
-workers <%= fetch(:puma_worker_count) %>
+# workers <%= fetch(:puma_worker_count) %>
 
 # Code to run when a worker boots to setup the process before booting
 # the app.
@@ -132,7 +132,7 @@ workers <%= fetch(:puma_worker_count) %>
 # Preload the application before starting the workers; this conflicts with
 # phased restart feature. (off by default)
 
-preload_app!
+# preload_app!
 
 # Additional text to display in process listing
 #
