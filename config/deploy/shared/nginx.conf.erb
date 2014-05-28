@@ -1,5 +1,5 @@
 upstream puma {
-  server unix:/tmp/puma.<%= fetch(:application) %>.sock fail_timeout=0;
+  server unix:///tmp/puma.<%= fetch(:application) %>.sock fail_timeout=0;
 }
 
 server {

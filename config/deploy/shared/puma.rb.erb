@@ -4,7 +4,7 @@
 #
 # The default is the current directory.
 #
-directory "<%= "#{fetch(:deploy_to)}/releases/current" %>"
+directory "<%= current_path %>"
 
 # Use an object or block as the rack application. This allows the
 # config file to be the application itself.
@@ -34,12 +34,12 @@ environment "<%= fetch(:rails_env) %>"
 #
 # The default is “false”.
 #
-# daemonize
-daemonize true
+daemonize
+# daemonize false
 
 # Store the pid of the server in the file at “path”.
 #
-pidfile "<%= "#{fetch(:deploy_to)}/releases/current" %>/tmp/pids/puma.pid"
+pidfile "<%= current_path %>/tmp/pids/puma.pid"
 
 # Use “path” as the file to store the server info state. This is
 # used by “pumactl” to query and control the server.
@@ -51,7 +51,7 @@ pidfile "<%= "#{fetch(:deploy_to)}/releases/current" %>/tmp/pids/puma.pid"
 # “false”.
 #
 # stdout_redirect '/u/apps/lolcat/log/stdout', '/u/apps/lolcat/log/stderr'
-stdout_redirect "<%= "#{fetch(:deploy_to)}/releases/current" %>/log/puma.log", "<%= "#{fetch(:deploy_to)}/releases/current" %>/log/puma.log", true
+stdout_redirect "<%= current_path %>/log/puma.log", "<%= current_path %>/log/puma.log", true
 
 # Disable request logging.
 #
@@ -72,7 +72,7 @@ stdout_redirect "<%= "#{fetch(:deploy_to)}/releases/current" %>/log/puma.log", "
 # The default is “tcp://0.0.0.0:9292”.
 #
 # bind 'tcp://0.0.0.0:9292'
-bind "unix:/tmp/puma.<%= fetch(:application) %>.sock"
+bind "unix:///tmp/puma.<%= fetch(:application) %>.sock"
 # bind 'unix:///var/run/puma.sock?umask=0777'
 # bind 'ssl://127.0.0.1:9292?key=path_to_key&cert=path_to_cert'
 
