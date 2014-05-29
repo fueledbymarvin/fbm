@@ -6,7 +6,7 @@ commonDirectives.directive 'alerts', ['Alerts', '$compile', (Alerts, $compile) -
     scope:
       key: '@'
       action: '&'
-    templateUrl: 'assets/common/alerts.html'
+    templateUrl: '<%= asset_path("common/alerts.html") %>'
     link: (scope, element, attrs) ->
       scope.success = Alerts.alerts.success
       scope.info = Alerts.alerts.info
@@ -45,7 +45,7 @@ commonDirectives.directive 'textConfirm', ['Alerts', '$compile', (Alerts, $compi
       instructions: '@'
       message: '@'
       target: '@'
-    templateUrl: 'assets/common/confirm.html'
+    templateUrl: '<%= asset_path("common/confirm.html") %>'
     link: (scope, element, attrs) ->
       scope.clicked = false
       scope.input = ""
@@ -63,7 +63,7 @@ commonDirectives.directive 'navbar', ['$location', 'Auth', 'Alerts', ($location,
     scope:
       user: '='
       active: '@'
-    templateUrl: 'assets/common/navbar.html'
+    templateUrl: '<%= asset_path("common/navbar.html") %>'
     link: (scope, element, attrs) ->
       scope.logout = ->
         Auth.logout().then(

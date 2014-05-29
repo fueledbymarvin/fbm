@@ -3,7 +3,7 @@ fbmApp = angular.module('fbmApp', ['ngRoute', 'users.services', 'sessions.servic
 fbmApp.config(['$routeProvider', '$locationProvider', ($routeProvider, $locationProvider) ->
   $routeProvider.when('/'
     controller: 'IndexCtrl'
-    templateUrl: '/assets/index.html'
+    templateUrl: '<%= asset_path("index.html") %>'
     resolve:
       currentUser: ['Auth', (Auth) ->
         return Auth.currentUser()
@@ -14,21 +14,21 @@ fbmApp.config(['$routeProvider', '$locationProvider', ($routeProvider, $location
       users: ['UsersListLoader', (UsersListLoader) ->
         return UsersListLoader()
       ]
-    templateUrl: '/assets/users/index.html'
+    templateUrl: '<%= asset_path("users/index.html") %>'
   ).when('/users/view/:userId',
     controller: 'UsersViewCtrl'
     resolve:
       user: ['UsersLoader', (UsersLoader) ->
         return UsersLoader()
       ]
-    templateUrl: '/assets/users/view.html'
+    templateUrl: '<%= asset_path("users/view.html") %>'
   ).when('/users/edit/:userId',
     controller: 'UsersEditCtrl'
     resolve:
       user: ['UsersLoader', (UsersLoader) ->
         return UsersLoader()
       ]
-    templateUrl: '/assets/users/edit.html'
+    templateUrl: '<%= asset_path("users/edit.html") %>'
   ).when('/users/new',
     controller: 'UsersNewCtrl'
     templateUrl: '/assets/users/new.html'
@@ -37,7 +37,7 @@ fbmApp.config(['$routeProvider', '$locationProvider', ($routeProvider, $location
     template: ''
   ).when('/reset/:token',
     controller: 'UsersResetCtrl'
-    templateUrl: '/assets/users/reset.html'
+    templateUrl: '<%= asset_path("users/reset.html") %>'
   ).otherwise(
     redirectTo: '/'
   )
