@@ -73,8 +73,6 @@ namespace :deploy do
   # setup_config
   after 'deploy:setup_config', 'nginx:reload'
 
-  # compile assets locally then rsync
-  after 'deploy:symlink:shared', 'deploy:compile_assets_locally'
   after :finishing, 'deploy:cleanup'
 
   # As of Capistrano 3.1, the `deploy:restart` task is not called
