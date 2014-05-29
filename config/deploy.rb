@@ -12,7 +12,7 @@ set :rvm1_ruby_version, '2.1.1'
 set :keep_releases, 5
 
 # files we want symlinking to specific entries in shared
-set :linked_files, %w{config/database.yml}
+set :linked_files, %w{config/database.yml config/application.yml}
 
 # dirs we want symlinking to shared
 set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
@@ -27,6 +27,7 @@ set :tests, []
 set(:config_files, %w(
   nginx.conf
   database.yml
+  application.yml
   puma_init.sh
   puma.rb
 ))
@@ -78,4 +79,3 @@ namespace :deploy do
   # automatically.
   after 'deploy:publishing', 'deploy:restart'
 end
-
