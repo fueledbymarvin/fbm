@@ -1,6 +1,11 @@
 namespace :deploy do
   task :setup_config do
     on roles(:app) do
+      config = YAML.load(File.read(File.expand_path("../../../../config/application.yml", __FILE__)))
+      config.each do |key, value|
+        ENV[key] = value unless value.kind_of? Hash
+      end
+
       # make the config dir
       execute :mkdir, "-p #{shared_path}/config"
       full_app_name = fetch(:full_app_name)

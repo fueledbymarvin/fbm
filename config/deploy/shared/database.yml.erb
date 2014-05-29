@@ -6,6 +6,6 @@
   database: <%= "#{fetch(:application)}_#{fetch(:rails_env)}" %>
   pool: 5
   username: <%= "#{fetch(:user)}" %>
-  password: <%%= ENV['PG_PASSWORD'] %>
+  password: <%%= ENV['FBM_PG_PASSWORD'] %>
   host:
   port: 5432
