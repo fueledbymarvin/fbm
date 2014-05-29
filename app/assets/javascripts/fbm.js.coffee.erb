@@ -31,7 +31,7 @@ fbmApp.config(['$routeProvider', '$locationProvider', ($routeProvider, $location
     templateUrl: '<%= asset_path("users/edit.html") %>'
   ).when('/users/new',
     controller: 'UsersNewCtrl'
-    templateUrl: '/assets/users/new.html'
+    templateUrl: '<%= asset_path("users/new.html") %>'
   ).when('/activate/:token',
     controller: 'UsersActivateCtrl'
     template: ''
