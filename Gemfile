@@ -69,6 +69,7 @@ end
 gem 'puma'
 gem 'sorcery'
 gem 'mandrill-api'
+gem 'figaro'
 
 gem 'bourbon'
 gem 'bootstrap-sass'
