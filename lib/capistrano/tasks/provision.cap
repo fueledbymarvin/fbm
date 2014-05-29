@@ -11,7 +11,8 @@ namespace :provision do
   task :rvm do
     on roles(:all) do
       invoke 'rvm1:install:rvm'
-      execute 'rvm', "install ruby-#{fetch(:rvm1_ruby_version)}"
+      execute 'rvm', "install #{fetch(:rvm1_ruby_version)}"
+      execute 'rvm', "use #{fetch(:rvm1_ruby_version)} --default"
     end
   end
   after "provision:install", "provision:rvm"

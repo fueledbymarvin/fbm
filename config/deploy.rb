@@ -6,7 +6,7 @@ set :scm, :git
 set :repo_url, 'git://github.com/fueledbymarvin/fbm.git'
 
 # setup rvm.
-set :rvm1_ruby_version, '2.1.1'
+set :rvm1_ruby_version, 'ruby-2.1.1'
 
 # how many old releases do we want to keep, not much
 set :keep_releases, 5
