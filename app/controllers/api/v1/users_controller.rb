@@ -5,7 +5,7 @@ module Api
 
       before_action :set_user, only: [:show, :update, :destroy]
       before_action :require_admin, only: [:index]
-      before_action :require_current, only: [:show, :update, :destroy, :reset_password, :send_reset_password]
+      before_action :require_current, only: [:show, :update, :destroy]
 
       # GET /users
       # GET /users.json
