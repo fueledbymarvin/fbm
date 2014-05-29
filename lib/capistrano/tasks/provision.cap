@@ -4,7 +4,7 @@ namespace :provision do
     on roles(:all) do
       execute 'sudo', 'apt-get -y update'
       execute 'sudo', 'apt-get -y upgrade'
-      execute 'sudo', 'apt-get -y install emacs24 git'
+      execute 'sudo', 'apt-get -y install emacs24 git memcached'
     end
   end
 

@@ -30,3 +30,7 @@ check process postgresql with pidfile /var/run/postgresql/9.3-main.pid
 check process puma with pidfile <%= current_path %>/tmp/pids/puma.pid
   start program = "/etc/init.d/puma_<%= fetch(:application) %> start"
   stop program = "/etc/init.d/puma_<%= fetch(:application) %> stop"
+
+check process memcached with pidfile /var/run/memcached.pid
+  start program = "/etc/init.d/memcached start"
+  stop program = "/etc/init.d/memcached stop"
