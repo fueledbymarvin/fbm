@@ -1,0 +1,10 @@
+namespace :monit do
+  %w(start stop restart).each do |command|
+    desc "#{command} Monit"
+    task command do
+      on roles(:all), in: :sequence, wait: 5 do
+        sudo "service monit #{command}"
+      end
+    end
+  end
+end

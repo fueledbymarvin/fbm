@@ -26,6 +26,14 @@ namespace :provision do
     end
   end
   after "provision:install", "provision:nginx"
+
+  desc "Install monit"
+  task :monit do
+    on roles(:all) do
+      execute 'sudo', 'apt-get -y install monit'
+    end
+  end
+  after "provision:install", "provision:monit"
   
   desc "Install the latest stable release of PostgreSQL"
   task :postgresql do

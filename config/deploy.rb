@@ -30,6 +30,8 @@ set(:config_files, %w(
   application.yml
   puma_init.sh
   puma.rb
+  monitrc
+  monit
 ))
 
 # which config files should be made executable after copying
@@ -50,6 +52,14 @@ set(:symlinks, [
   {
     source: "puma_init.sh",
     link: "/etc/init.d/puma_#{fetch(:application)}"
+  },
+  {
+    source: "monitrc",
+    link: "etc/monit/monitrc"
+  },
+  {
+    source: "monit",
+    link: "/etc/monit/conf.d/#{fetch(:application)}.conf"
   }
 ])
 
@@ -72,10 +82,13 @@ namespace :deploy do
   # reload nginx to it will pick up any modified vhosts from
   # setup_config
   after 'deploy:setup_config', 'nginx:reload'
-
-  after :finishing, 'deploy:cleanup'
+  # Restart monit so it will pick up any monit configurations
+  # we've added
+  after 'deploy:setup_config', 'monit:restart'
 
   # As of Capistrano 3.1, the `deploy:restart` task is not called
   # automatically.
   after 'deploy:publishing', 'deploy:restart'
+
+  after :finishing, 'deploy:cleanup'
 end
