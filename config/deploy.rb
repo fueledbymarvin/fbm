@@ -30,7 +30,6 @@ set(:config_files, %w(
   application.yml
   puma_init.sh
   puma.rb
-  monitrc
   monit
 ))
 
@@ -52,10 +51,6 @@ set(:symlinks, [
   {
     source: "puma_init.sh",
     link: "/etc/init.d/puma_#{fetch(:application)}"
-  },
-  {
-    source: "monitrc",
-    link: "etc/monit/monitrc"
   },
   {
     source: "monit",

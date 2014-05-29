@@ -1,4 +1,19 @@
+set mailserver smtp.mandrillapp.com port 587
+    username "fueledbymarvin@gmail.com" password <%= ENV['FBM_MANDRILL_KEY'] %>
+    using tlsv1
+    with timeout 30 seconds
+
 set mail-format { subject: <%= "#{fetch(:application)} - #{fetch(:rails_env)}" %> $SERVICE $EVENT at $DATE }
+
+set alert m@fueledbymarv.in
+
+set httpd port 2812
+    allow admin:<%= ENV['FBM_MONIT_PASSWORD'] %>
+
+check system fbm
+  if loadavg (5min) > 2 for 2 cycles then alert
+  if memory usage > 75% for 2 cycles then alert
+  if cpu usage (user) > 75% for 2 cycles then alert
 
 check process nginx with pidfile /var/run/nginx.pid
   start program = "/etc/init.d/nginx start"
