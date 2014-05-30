@@ -36,6 +36,7 @@ gem 'spring',        group: :development
 # Use Capistrano for deployment
 gem 'capistrano-rails', group: :development
 gem 'rvm1-capistrano3', group: :development, require: false
+gem 'capistrano3-puma', group: :development
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]

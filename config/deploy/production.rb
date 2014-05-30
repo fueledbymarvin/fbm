@@ -14,9 +14,9 @@ set :deploy_to, "/home/#{fetch(:user)}/apps/#{fetch(:application)}"
 # stage name.
 set :rails_env, :production
 
-# number of unicorn workers, this will be reflected in
-# the unicorn.rb and the monit configs
-set :puma_worker_count, 5
+# number of puma workers, this will be reflected in
+# the puma.rb and the monit configs
+set :puma_worker_count, 2
 
 # whether we're using ssl or not, used for building nginx
 # config file

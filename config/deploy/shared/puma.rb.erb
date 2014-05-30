@@ -102,16 +102,18 @@ bind "unix:///tmp/puma.<%= fetch(:application) %>.sock"
 #
 # The default is “0”.
 #
-# workers <%= fetch(:puma_worker_count) %>
+workers <%= fetch(:puma_worker_count) %>
 
 # Code to run when a worker boots to setup the process before booting
 # the app.
 #
 # This can be called multiple times to add hooks.
 #
-# on_worker_boot do
-#   puts 'On worker boot...'
-# end
+on_worker_boot do
+  if defined?(ActiveRecord::Base)
+    ActiveRecord::Base.establish_connection
+  end
+end
 
 # Code to run when a worker boots to setup the process after booting
 # the app.
