@@ -28,7 +28,6 @@ set(:config_files, %w(
   nginx.conf
   database.yml
   application.yml
-  puma_init.sh
   puma.rb
   monit
 ))
@@ -36,7 +35,6 @@ set(:config_files, %w(
 # which config files should be made executable after copying
 # by deploy:setup_config
 set(:executable_config_files, %w(
-  puma_init.sh
 ))
 
 
@@ -47,10 +45,6 @@ set(:symlinks, [
   {
     source: "nginx.conf",
     link: "/etc/nginx/sites-enabled/#{fetch(:application)}"
-  },
-  {
-    source: "puma_init.sh",
-    link: "/etc/init.d/puma_#{fetch(:application)}"
   },
   {
     source: "monit",
@@ -74,6 +68,7 @@ namespace :deploy do
   # to conflict with our configs.
   after 'deploy:check_revision', 'deploy:setup_config'
   before 'deploy:setup_config', 'nginx:remove_default_vhost'
+  before 'deploy:setup_config', 'puma:monit:config'
   # reload nginx to it will pick up any modified vhosts from
   # setup_config
   after 'deploy:setup_config', 'nginx:reload'
@@ -83,7 +78,7 @@ namespace :deploy do
 
   # As of Capistrano 3.1, the `deploy:restart` task is not called
   # automatically.
-  after 'deploy:publishing', 'deploy:restart'
+  # after 'deploy:publishing', 'deploy:restart'
 
   after :finishing, 'deploy:cleanup'
 end
