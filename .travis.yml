@@ -1,10 +1,13 @@
 language: ruby
 rvm:
-  - "2.1.1"
-
-# uncomment this line if your project needs to run something other than `rake`:
+  - 2.1.1
 script: bundle exec rspec spec
-
 before_script:
   - cp config/database.travis.yml config/database.yml
   - RAILS_ENV=test bundle exec rake db:create db:migrate
+after_success:
+  - openssl aes-256-cbc -k $DEPLOY_KEY -in config/deploy_id_rsa_enc_travis -d -a -out config/deploy_id_rsa
+  - bundle exec cap production deploy
+env:
+  global:
+    secure: dClH5F/XvjnEjdk7ktYNqjAy/+mKkx09iGatte9E0yh3BNNyjQbwg8iB5idi8x3IP4u9y1oHVN7lRQ206fPDaLRkwTnQS0iKsD8D4lQuziEUzNF/vhzn/wuNwdrkn8kXcXI1mURmapkcmz4QFSCDgLOtN0PThmJ+AJLZid6uyic=

@@ -5,6 +5,9 @@ set :user, 'deploy'
 set :scm, :git
 set :repo_url, 'git://github.com/fueledbymarvin/fbm.git'
 
+# setup ssh
+set :ssh_options, keys: ['config/deploy_id_rsa'] if File.exist?('config/deploy_id_rsa')
+
 # setup rvm.
 set :rvm1_ruby_version, 'ruby-2.1.1'
 
