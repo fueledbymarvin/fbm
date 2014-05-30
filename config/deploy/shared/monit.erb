@@ -12,7 +12,7 @@ set httpd port 2812
 
 check system fbm
   if loadavg (5min) > 2 for 2 cycles then alert
-  if memory usage > 75% for 2 cycles then alert
+  if memory usage > 20% for 2 cycles then alert
   if cpu usage (user) > 75% for 2 cycles then alert
 
 check process nginx with pidfile /var/run/nginx.pid
@@ -34,3 +34,14 @@ check process puma with pidfile <%= current_path %>/tmp/pids/puma.pid
 check process memcached with pidfile /var/run/memcached.pid
   start program = "/etc/init.d/memcached start"
   stop program = "/etc/init.d/memcached stop"
+
+<% fetch(:puma_workers).times do |n| %>
+  <% pid = "#{current_path}/tmp/pids/puma_worker_#{n}.pid" %>
+  check process <%= fetch(:application) %>_puma_worker_<%= n %> with pidfile <%= pid %>
+    start program = "/bin/true"
+    stop program = "/usr/bin/test -s <%= pid %> && /bin/kill -QUIT `cat <%= pid %>`"
+    if mem > 200.0 MB for 1 cycles then restart
+    if cpu > 50% for 3 cycles then restart
+    if 5 restarts within 5 cycles then timeout
+    if changed pid 2 times within 60 cycles then alert
+<% end %>
