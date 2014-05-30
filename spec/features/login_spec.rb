@@ -1,3 +1,5 @@
+require 'spec_helper'
+
 feature 'Login', js: true do
 
   background do
