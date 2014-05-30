@@ -27,6 +27,10 @@ check process postgresql with pidfile /var/run/postgresql/9.3-main.pid
   if failed host localhost port 5432 protocol pgsql then restart
   if 5 restarts within 5 cycles then timeout
 
+check process puma with pidfile <%= current_path %>/tmp/pids/puma.pid
+  start program = "/etc/init.d/puma_<%= fetch(:application) %> start"
+  stop program = "/etc/init.d/puma_<%= fetch(:application) %> stop"
+
 check process memcached with pidfile /var/run/memcached.pid
   start program = "/etc/init.d/memcached start"
   stop program = "/etc/init.d/memcached stop"

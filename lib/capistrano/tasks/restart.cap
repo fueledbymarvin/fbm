@@ -1,0 +1,8 @@
+namespace :deploy do
+  desc 'Restart'
+  task :restart do
+    on roles(:app), in: :sequence, wait: 5 do
+      invoke "puma:phased_restart"
+    end
+  end
+end

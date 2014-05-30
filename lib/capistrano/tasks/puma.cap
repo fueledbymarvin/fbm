@@ -1,0 +1,10 @@
+namespace :puma do
+  %w(start stop restart phased_restart).each do |command|
+    desc "#{command} Puma"
+    task command do
+      on roles(:app), in: :sequence, wait: 5 do
+        sudo "/etc/init.d/puma_#{fetch(:application)} #{command}"
+      end
+    end
+  end
+end

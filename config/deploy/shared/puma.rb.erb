@@ -110,11 +110,10 @@ workers <%= fetch(:puma_worker_count) %>
 # This can be called multiple times to add hooks.
 #
 on_worker_boot do
+  # Start up the database connection again in the worker
   if defined?(ActiveRecord::Base)
     ActiveRecord::Base.establish_connection
   end
-
-  File.open("<%= current_path %>/tmp/pids/puma_worker_#{next_worker_index}.pid", "w") { |f| f.puts Process.pid }
 end
 
 # Code to run when a worker boots to setup the process after booting
