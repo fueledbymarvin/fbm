@@ -7,7 +7,7 @@
 
 PUMA_CONFIG_FILE=<%= shared_path %>/config/puma.rb
 PUMA_PID_FILE=<%= current_path %>/tmp/pids/puma.pid
-PUMA_SOCKET=/tmp/puma.<%= fetch(:application %>.sock
+PUMA_SOCKET=/tmp/puma.<%= fetch(:application) %>.sock
 
 # check if puma process is running
 puma_is_running() {
