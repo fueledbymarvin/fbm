@@ -10,8 +10,16 @@ keys = []
 if File.exist?('config/deploy_id_rsa')
   keys << 'config/deploy_id_rsa'
 end
+p keys
 
-server '107.170.182.106', user: 'deploy', roles: %w{web app db}, primary: true, ssh_options: { keys: keys }
+server '107.170.182.106',
+  user: 'deploy',
+  roles: %w{web app db},
+  primary: true,
+  ssh_options: {
+    keys: keys
+    auth_methods: %w(publickey)
+  }
 
 set :deploy_to, "/home/#{fetch(:user)}/apps/#{fetch(:application)}"
 
