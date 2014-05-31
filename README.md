@@ -14,6 +14,8 @@ This is a boilerplate application that leverages the following technologies:
 - guard for automation
 - mandrill for email
 - capistrano for deployment
-- travis for continuous integration
+- travis for continuous integration and deployment
 - figaro for setting environment variables
 - dalli for cache store
+- new relic for application monitoring
+- monit for process monitoring
