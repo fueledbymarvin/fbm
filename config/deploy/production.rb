@@ -17,7 +17,6 @@ server '107.170.182.106',
   primary: true,
   ssh_options: {
     keys: keys,
-    forward_agent: false,
     auth_methods: %w(publickey)
   }
 
