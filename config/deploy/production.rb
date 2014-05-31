@@ -17,7 +17,7 @@ server '107.170.182.106',
   roles: %w{web app db},
   primary: true,
   ssh_options: {
-    keys: keys
+    keys: keys,
     auth_methods: %w(publickey)
   }
 
