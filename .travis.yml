@@ -6,8 +6,9 @@ before_script:
   - cp config/database.travis.yml config/database.yml
   - RAILS_ENV=test bundle exec rake db:create db:migrate
 after_success:
-  - openssl aes-256-cbc -k $DEPLOY_KEY -in config/deploy_id_rsa_enc_travis -d -a -out config/deploy_id_rsa
-  - cat config/deploy_id_rsa
+  - openssl aes-256-cbc -k $DEPLOY_KEY -in config/id_rsa_encrypted -d -a -out config/id_rsa
+  - chmod 600 config/id_rsa
+  - ssh-add config/id_rsa
   - bundle exec cap production deploy
 env:
   global:

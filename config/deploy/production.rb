@@ -6,19 +6,10 @@ set :branch, "master"
 # need to create entries in your local Hosts file for testing.
 set :server_name, "www.fueledbymarv.in fueledbymarv.in"
 
-keys = []
-if File.exist?('config/deploy_id_rsa')
-  keys << 'config/deploy_id_rsa'
-end
-
 server '107.170.182.106',
   user: 'deploy',
   roles: %w{web app db},
-  primary: true,
-  ssh_options: {
-    keys: keys,
-    auth_methods: %w(publickey)
-  }
+  primary: true
 
 set :deploy_to, "/home/#{fetch(:user)}/apps/#{fetch(:application)}"
 
