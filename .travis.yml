@@ -3,10 +3,11 @@ rvm:
   - 2.1.1
 script: bundle exec rspec spec
 before_script:
-  - cp config/database.travis.yml config/database.yml
+  - cp config/database.yml.travis config/database.yml
   - RAILS_ENV=test bundle exec rake db:create db:migrate
 after_success:
-  - openssl aes-256-cbc -k $DEPLOY_KEY -in config/id_rsa_encrypted -d -a -out config/id_rsa
+  - openssl aes-256-cbc -k $DEPLOY_KEY -in config/application.yml.encrypted -d -a -out config/application.yml
+  - openssl aes-256-cbc -k $DEPLOY_KEY -in config/id_rsa.encrypted -d -a -out config/id_rsa
   - chmod 600 config/id_rsa
   - eval `ssh-agent -s`
   - ssh-add config/id_rsa
