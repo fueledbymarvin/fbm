@@ -10,7 +10,6 @@ keys = []
 if File.exist?('config/deploy_id_rsa')
   keys << 'config/deploy_id_rsa'
 end
-p keys
 
 server '107.170.182.106',
   user: 'deploy',
@@ -18,6 +17,7 @@ server '107.170.182.106',
   primary: true,
   ssh_options: {
     keys: keys,
+    forward_agent: false,
     auth_methods: %w(publickey)
   }
 
