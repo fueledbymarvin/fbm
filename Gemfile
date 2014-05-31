@@ -71,6 +71,7 @@ gem 'sorcery'
 gem 'mandrill-api'
 gem 'figaro'
 gem 'dalli'
+gem 'newrelic_rpm'
 
 gem 'bourbon'
 gem 'bootstrap-sass'
